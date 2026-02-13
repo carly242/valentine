@@ -101,6 +101,7 @@
             text-align: center;
             display: flex;
             flex-direction: column;
+            align-items: center; /* Aligne l'image et le texte au centre */
             justify-content: center;
             pointer-events: none;
         }
@@ -109,29 +110,40 @@
             opacity: 1;
             z-index: 100;
             width: 350px;
-            height: 460px;
+            height: 520px; /* Augmenté pour laisser de la place à la photo */
             transform: translate(-50%, -55%) scale(1); 
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
             pointer-events: auto;
         }
 
+        /* STYLE DE LA PHOTO */
+        .recipient-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--burgundy);
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         .letter h1 {
             font-family: 'Playfair Display', serif;
             color: var(--burgundy);
-            font-size: 32px;
-            margin: 0 0 20px 0;
+            font-size: 28px;
+            margin: 0 0 15px 0;
         }
 
         .letter p {
             color: #333;
-            font-size: 18px;
-            line-height: 1.8;
-            margin: 10px 0;
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 8px 0;
         }
 
         .signature {
-            margin-top: 30px;
-            font-size: 22px;
+            margin-top: 20px;
+            font-size: 20px;
             color: var(--burgundy);
             font-weight: bold;
         }
@@ -181,33 +193,31 @@
         </div>
 
         <div class="letter" id="msg">
-            <h1> Ma Valentine</h1>
+            
+            <h1>Ma Valentine</h1>
             <p>Mon cœur, chaque jour à tes côtés est une nouvelle raison de sourire.</p>
             <p>Tu es ma plus belle histoire et mon plus beau projet.</p>
-            <div class="signature">Je t'aime ♥</div>
+            <div class="signature">Je t'aime ♥ GF</div>
         </div>
     </div>
 
     <script>
         const env = document.getElementById('env');
 
-        // Fonction pour ouvrir l'enveloppe
         env.addEventListener('click', (e) => {
-            e.stopPropagation(); // Empêche le clic de se propager au document
+            e.stopPropagation();
             if (!env.classList.contains('opened')) {
                 env.classList.add('opened');
                 spawnHearts();
             }
         });
 
-        // Fonction pour refermer en cliquant n'importe où sur la page
         document.addEventListener('click', () => {
             if (env.classList.contains('opened')) {
                 env.classList.remove('opened');
             }
         });
 
-        // Empêcher la fermeture si on clique sur la lettre elle-même (optionnel)
         document.getElementById('msg').addEventListener('click', (e) => {
             e.stopPropagation();
         });
